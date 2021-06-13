@@ -46,9 +46,9 @@
                     <asp:Label ID="Label4" runat="server" Text="Length:" Font-Size="30px" ></asp:Label>
                 </div>
                 <div id="win" runat="server" visible="false" style="text-align:center" >
-                    <asp:Label ID="Label5" runat="server" Text="通關" Font-Size="1000px"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="通關" Font-Size="400px" ForeColor="White"></asp:Label>
                     <br/>
-                    <asp:Button ID="Button1" runat="server" Text="重新"  Font-Size="1000px" OnClick="Button1_Click" />
+                    <asp:Button ID="Button1" runat="server" Text="重新"  Font-Size="400px" OnClick="Button1_Click" />
                 </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

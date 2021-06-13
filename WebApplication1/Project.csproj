@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\5.png" />
     <Content Include="WebForm1.aspx" />
     <None Include="Resources\2.png" />
     <None Include="Resources\4.png" />
@@ -76,8 +78,6 @@
     <None Include="Resources\background.jpg" />
     <None Include="Resources\background_1.jpg" />
     <None Include="Resources\1.png" />
-    <None Include="Resources\3.png" />
-    <None Include="Resources\5.png" />
     <None Include="Resources\onback.png" />
     <None Include="Resources\0.png" />
     <Content Include="terminal.aspx" />

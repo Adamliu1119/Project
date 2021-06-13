@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Resources\2.png" />
     <None Include="Resources\4.png" />
     <None Include="Resources\6.png" />
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="terminal.aspx.designer.cs">
       <DependentUpon>terminal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

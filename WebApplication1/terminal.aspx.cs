@@ -23,12 +23,55 @@ namespace WebApplication1
             };
 
         static int c = 0;
+
         
+        List<int> key = new List<int>();
+        List<string> value = new List<string>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            ImageButton[] imagebutton = {
+                ImageButton1, ImageButton2, ImageButton3, ImageButton4,
+                ImageButton5, ImageButton6, ImageButton7, ImageButton8,
+                ImageButton9, ImageButton10, ImageButton11, ImageButton12,
+                ImageButton13, ImageButton14, ImageButton15, ImageButton16 };
+
+            if (!IsPostBack)
+            {
+                //Timer1.Enabled = true;
+                //int rnd;
+                //rnd = r.Next(0, 16);
+
+                //for (int i = 0; i < 2; i++)
+                //{
+                //    for (int j = 0; j < 8; j++)
+                //    {
+
+                //        if (imUrl[rnd] == "")
+                //        {
+                //            imUrl[rnd] = img[j];
+                //        }
+                //        else
+                //        {
+                //            j -= 1;
+                //            rnd = r.Next(0, 16);
+                //        }
+                //    }
+                //}
+            }
+            else
+            {
+                //c += 1;
+                //if (c == 3)
+                //{
+                //    for (int i = 0; i < 16; i++)
+                //        imagebutton[i].ImageUrl = "Resources/onback.png";
+                //    Timer1.Enabled = false;
+                //}
+                
+                
+            }
         }
-        
         public void match(int index)
         {
             ImageButton[] imagebutton = {
@@ -37,10 +80,37 @@ namespace WebApplication1
                 ImageButton9, ImageButton10, ImageButton11, ImageButton12,
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
-            if (ViewState["Image"] != null)
+            imagebutton[index].ImageUrl = ((string[])ViewState["Image"])[index];
+
+            for (int i = 0; i < 16; i++)
             {
-                imagebutton[index].ImageUrl = ((string[])ViewState["Image"])[index];
+                if (imagebutton[i].ImageUrl!="Resources/onback.png")
+                {
+                    
+                    if (key.Count==2)
+                    {
+                        if (value[0]==value[1])
+                        {
+                            imagebutton[key[0]].Enabled = false;
+                            imagebutton[key[1]].Enabled = false;
+                            
+                        }
+                        else
+                        {
+                            imagebutton[key[0]].ImageUrl = "Resources/onback.png";
+                            imagebutton[key[1]].ImageUrl = "Resources/onback.png";
+                        }
+                        key.Clear();
+                        value.Clear();
+                    }
+                    else
+                    {
+                        key.Add(i);
+                        value.Add(imagebutton[i].ImageUrl);
+                    }
+                }
             }
+            
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -51,7 +121,6 @@ namespace WebApplication1
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
             match(1);
-           
         }
 
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
@@ -127,10 +196,8 @@ namespace WebApplication1
 
         protected void btn_Ran_Click(object sender, EventArgs e)
         {
-
+            c = 0;
             Timer1.Enabled = true;
-            Timer1.Interval = 1000;
-
             int rnd;
             rnd = r.Next(0, 16);
 
@@ -151,7 +218,7 @@ namespace WebApplication1
                 }
             }
 
-            ViewState["Back"] = "Resources/onback.png";
+
             ViewState["Image"] =imUrl;
             ImageButton[] imagebutton = {
                 ImageButton1, ImageButton2, ImageButton3, ImageButton4,
@@ -159,41 +226,47 @@ namespace WebApplication1
                 ImageButton9, ImageButton10, ImageButton11, ImageButton12,
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
-
-            //while (c < 3)
-            //{
-            //    Timer1.Enabled = true;
-
-            //}
-            if (c < 3)
+            
+            for (int i = 0; i < 16; i++)
             {
-                for (int i = 0; i < 16; i++)
-                    imagebutton[i].ImageUrl = ((string[])ViewState["Image"])[i];
+                imagebutton[i].Enabled = true;
+                imagebutton[i].ImageUrl = ((string[])ViewState["Image"])[i];
             }
+                
+
+
+
         }
 
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            
             ImageButton[] imagebutton = {
                 ImageButton1, ImageButton2, ImageButton3, ImageButton4,
                 ImageButton5, ImageButton6, ImageButton7, ImageButton8,
                 ImageButton9, ImageButton10, ImageButton11, ImageButton12,
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
-            
+
             c++;
+
+           
+
             if (c < 3)
             {
                 Label1.Text = c.ToString();
-            }
-            else if (c==1)
-            {
-                Timer1.Enabled = false;
                 for (int i = 0; i < 16; i++)
-                    imagebutton[i].ImageUrl = ViewState["Back"].ToString();
+                    imagebutton[i].ImageUrl = ((string[])ViewState["Image"])[i];
             }
-            
+            else
+            {
+                for (int i = 0; i < 16; i++)
+                    imagebutton[i].ImageUrl = "Resources/onback.png";
+                Timer1.Enabled = false;
+            }
+
+
         }
     }
 }

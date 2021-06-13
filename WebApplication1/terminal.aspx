@@ -13,6 +13,7 @@
             <asp:ScriptManager runat="server" />
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
+                    <div id="play" runat="server">
                      <div>
                         <asp:ImageButton ID="ImageButton1" runat="server"  Height="200px" Width="140px" ImageUrl="~/Resources/onback.png" OnClick="ImageButton1_Click" />
                         <asp:ImageButton ID="ImageButton2" runat="server"   ImageUrl="~/Resources/onback.png" Height="200px" Width="140px" OnClick="ImageButton2_Click"/>
@@ -42,8 +43,17 @@
                     <asp:Label ID="Label1" runat="server" Text="0" ForeColor="White" Font-Size="30px"></asp:Label>
                     <asp:Label ID="Label2" runat="server" Text="  Length:" Font-Size="30px" ForeColor="White"></asp:Label>
                     <asp:Label ID="Label3" runat="server"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Length:" Font-Size="30px" ></asp:Label>
+                </div>
+                <div id="win" runat="server" visible="false" style="text-align:center" >
+                    <asp:Label ID="Label5" runat="server" Text="通關" Font-Size="1000px"></asp:Label>
+                    <br/>
+                    <asp:Button ID="Button1" runat="server" Text="重新"  Font-Size="1000px" OnClick="Button1_Click" />
+                </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
+            
         </div>
     </form>
 </body>

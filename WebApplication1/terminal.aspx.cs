@@ -9,57 +9,63 @@ namespace WebApplication1
 {
     public partial class terminal : System.Web.UI.Page
     {
-        
+
         Random r = new Random();
-
-        List<string> img = new List<string>{ 
-            "Resources/1.png", "Resources/2.png", "Resources/3.png", "Resources/4.png",
-            "Resources/5.png","Resources/6.png","Resources/7.png","Resources/8.png"
-        };
-
+        string[] imUrl = {"", "", "", "",
+                            "","","","",
+                            "","","","",
+                            "","","",""
+         };
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            string[] img = {
+                "Resources/0.png","Resources/1.png", "Resources/2.png", "Resources/3.png",
+                "Resources/4.png","Resources/5.png","Resources/6.png","Resources/7.png"
+            };
 
             ImageButton[] imageButtons = {ImageButton1,ImageButton2, ImageButton3, ImageButton4,
                 ImageButton5, ImageButton6, ImageButton7, ImageButton8,
                 ImageButton9, ImageButton10, ImageButton11, ImageButton12,
-                ImageButton13, ImageButton14, ImageButton15, ImageButton16,
+                ImageButton13, ImageButton14, ImageButton15, ImageButton16
             };
 
-            int count = 0;
-            int[] ran = { 0, 0, 0, 0, 0, 0, 0, 0, 
-                          0, 0, 0, 0, 0, 0, 0, 0 };
-            List<int> rrr = new List<int>();
+                
+                int rnd = r.Next(0, 16);
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+
+                        if (imUrl[rnd] == "")
+                        {
+                            imUrl[rnd] = img[j];
+                        }
+                        else
+                        {
+                            j -= 1;
+                            rnd = r.Next(0, 16);
+                        }
+                    }
+                }
 
 
-            while (true) {
-                if (ran.Average()==1)
-                {
-                    break;
-                }
-                else
-                {
-                    int rnd = r.Next(0, 8);
-                    ran[rnd] += 1;
-                }
+
+            for (int ii = 0; ii < 16; ii++)
+            {
+                imageButtons[ii].ImageUrl = imUrl[ii];
             }
 
-           
 
-            
-            //if (rrr.Exists(t => t == rnd))
+
+            //foreach (string ss in imUrl)
             //{
-            //    rnd = r.Next(0, 8);
-                
+            //    Response.Write(ss + "<br/>");
             //}
 
-            
-            
-            foreach (int a in ran)
-            {
-                Response.Write(a+"<br/>");
-            }
         }
+        
+
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             
@@ -67,23 +73,14 @@ namespace WebApplication1
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
-
+           
         }
 
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
-
+            
         }
 
-        protected void ImageButton2_Click1(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
-        protected void ImageButton3_Click1(object sender, ImageClickEventArgs e)
-        {
-
-        }
 
         protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
         {

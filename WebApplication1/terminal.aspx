@@ -43,8 +43,8 @@
                     <asp:Timer ID="Timer2" runat="server" OnTick="Timer2_Tick" EnableViewState="True" Enabled="False" Interval="1000"></asp:Timer>
                     <asp:Label ID="Label1" runat="server" Text="觀看時間剩餘：" ForeColor="White" Font-Size="30px"></asp:Label>
                     <asp:Label ID="Label3" runat="server"></asp:Label>
+                    <br/>
                     <asp:Label ID="Label4" runat="server" Text="完成組數：" Font-Size="30px" ></asp:Label>
-                   
                     <br/>
                     <asp:Label ID="Label2" runat="server" Text="遊戲剩餘時間：" Font-Size="30px"></asp:Label>
                 </div>

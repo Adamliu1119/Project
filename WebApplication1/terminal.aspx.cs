@@ -17,7 +17,6 @@ namespace WebApplication1
                             "","","",""
          };
 
-        List<string> ii = new List<string>();
         string[] img = {
                 "Resources/0.png","Resources/1.png", "Resources/2.png", "Resources/3.png",
                 "Resources/4.png","Resources/5.png","Resources/6.png","Resources/7.png"
@@ -40,6 +39,10 @@ namespace WebApplication1
             if (!IsPostBack)
             {
                 ViewState["b"] = indexs;
+                for (int i = 0; i < 16; i++)
+                {
+                    imagebutton[i].Enabled = false;
+                }
                 //Timer1.Enabled = true;
                 //int rnd;
                 //rnd = r.Next(0, 16);
@@ -92,7 +95,8 @@ namespace WebApplication1
             if (indexs[0] == 16)
             {
                 indexs[0] = index; //indexs{0,16}
-
+                imagebutton[indexs[0]].Enabled = false;
+                
             }
             else if (indexs[1] == 16) //indexs{0,1}
             {
@@ -108,65 +112,29 @@ namespace WebApplication1
                         //Response.Write("<script>alert('通關');</script>");
                         play.Visible = false;
                         win.Visible = true;
+                        count = 0;
                     }
                 }
                 else
                 {
+
                     Timer1.Enabled = true;
+                    for (int i = 0; i < 16; i++)
+                    {
+                        imagebutton[i].Enabled = true;
+                    }
+                    count = 0;
                     show(indexs[0], indexs[1]);
                 }
                 indexs[0] = 16;
                 indexs[1] = 16;
-
-
             }
-
-
-
-
-
 
             Label4.Text = count.ToString();
             ViewState["b"] = indexs;
             ViewState["a"] = x;
             ViewState["c"] = count;
-            //for (int i = 0; i < 16; i++)
-            //{
-            //    if (imagebutton[i].ImageUrl!="Resources/onback.png")
-            //    {
-
-            //        if (key.Count == 2)
-            //        {
-
-
-            //            Label4.Text = key.Count.ToString();
-            //            if (value[0]==value[1])
-            //            {
-            //                //imagebutton[key[0]].Enabled = false;
-            //                //imagebutton[key[1]].Enabled = false;
-            //                key.Clear();
-            //                value.Clear();
-
-            //            }
-            //            else
-            //            {
-            //               Label4.Text = key.Count.ToString();
-            //                for (int x = 0; x < 16; i++)
-            //                    imagebutton[x].ImageUrl = "Resources/onback.png";
-            //                key.Clear();
-            //                value.Clear();
-            //            }
-
-            //        }
-            //        else
-            //        {
-
-            //            key.Add(i);
-            //            value.Add(imagebutton[i].ImageUrl);
-            //            Label4.Text = key.Count.ToString();
-            //        }
-            //    }
-            //}
+            
 
         }
 
@@ -245,17 +213,26 @@ namespace WebApplication1
         {
             match(14);
         }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            play.Visible = true;
-            win.Visible = false;
-        }
-
         protected void ImageButton16_Click(object sender, ImageClickEventArgs e)
         {
             match(15);
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ImageButton[] imagebutton = {
+                ImageButton1, ImageButton2, ImageButton3, ImageButton4,
+                ImageButton5, ImageButton6, ImageButton7, ImageButton8,
+                ImageButton9, ImageButton10, ImageButton11, ImageButton12,
+                ImageButton13, ImageButton14, ImageButton15, ImageButton16,
+            };
+            play.Visible = true;
+            win.Visible = false;
+            for (int i = 0; i < 16; i++)
+                imagebutton[i].ImageUrl = "Resources/onback.png";
+        }
+
+        
 
         protected void btn_Ran_Click(object sender, EventArgs e)
         {
@@ -292,7 +269,7 @@ namespace WebApplication1
 
             for (int i = 0; i < 16; i++)
             {
-                imagebutton[i].Enabled = true;
+                imagebutton[i].Enabled = false;
                 imagebutton[i].ImageUrl = ((string[])ViewState["Image"])[i];
             }
 
@@ -306,6 +283,28 @@ namespace WebApplication1
             indexs2 = index2;
         }
 
+        protected void Timer2_Tick(object sender, EventArgs e)
+        {
+            ImageButton[] imagebutton = {
+                ImageButton1, ImageButton2, ImageButton3, ImageButton4,
+                ImageButton5, ImageButton6, ImageButton7, ImageButton8,
+                ImageButton9, ImageButton10, ImageButton11, ImageButton12,
+                ImageButton13, ImageButton14, ImageButton15, ImageButton16,
+            };
+            if (n == 5)
+            {
+                count = 0;
+                imagebutton[indexs1].ImageUrl = "Resources/onback.png";
+                imagebutton[indexs2].ImageUrl = "Resources/onback.png";
+                imagebutton[indexs1].Enabled = true;
+                imagebutton[indexs2].Enabled = true;
+                n = 0;
+                Timer2.Enabled = false;
+                
+            }
+            n += 1;
+            Label2.Text = n.ToString();
+        }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
 
@@ -318,21 +317,7 @@ namespace WebApplication1
 
             c++;
 
-            if (n == 5)
-            {
-                count = 0;
-                imagebutton[indexs1].ImageUrl = "Resources/onback.png";
-                imagebutton[indexs2].ImageUrl = "Resources/onback.png";
-                imagebutton[indexs1].Enabled = true;
-                imagebutton[indexs2].Enabled = true;
-                n = 0;
-                Timer1.Enabled = false;
-
-            }
-            else
-            {
-                n += 1;
-            }
+            
 
             if (c < 3)
             {
@@ -342,8 +327,10 @@ namespace WebApplication1
             }
             else
             {
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 16; i++) { 
                     imagebutton[i].ImageUrl = "Resources/onback.png";
+                    imagebutton[i].Enabled = true;
+                }
                 Timer1.Enabled = false;
             }
 

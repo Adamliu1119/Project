@@ -70,6 +70,8 @@
     <Content Include="Global.asax" />
     <None Include="Resources\3.png" />
     <None Include="Resources\5.png" />
+    <None Include="Resources\pass.jpg" />
+    <None Include="Resources\background_2.jpg" />
     <Content Include="WebForm1.aspx" />
     <None Include="Resources\2.png" />
     <None Include="Resources\4.png" />

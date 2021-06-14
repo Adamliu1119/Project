@@ -22,7 +22,7 @@ namespace WebApplication1
                 "Resources/4.png","Resources/5.png","Resources/6.png","Resources/7.png"
             };
 
-        static int c = 0, n = 0;
+        static int c = 3, n = 30;
         int x = 0, indexs1 = 0, indexs2 = 0, count = 0;
         int[] indexs = new int[2] { 16, 16 };
         List<int> key = new List<int>();
@@ -79,6 +79,8 @@ namespace WebApplication1
         }
         public void match(int index)
         {
+            Timer2.Enabled = true;
+            
             x = Convert.ToInt32(ViewState["a"]);
             indexs = (int[])ViewState["b"];
             count = Convert.ToInt32(ViewState["c"]);
@@ -89,9 +91,9 @@ namespace WebApplication1
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
             imagebutton[index].ImageUrl = ((string[])ViewState["Image"])[index];
-            Label3.Text = "加1前" + x.ToString() + " |";
-            x += 1;
-            Label3.Text += "| 加1後" + x.ToString() + " |";
+            //Label3.Text = "加1前" + x.ToString() + " |";
+            //x += 1;
+            //Label3.Text += "| 加1後" + x.ToString() + " |";
             if (indexs[0] == 16)
             {
                 indexs[0] = index; //indexs{0,16}
@@ -130,7 +132,7 @@ namespace WebApplication1
                 indexs[1] = 16;
             }
 
-            Label4.Text = count.ToString();
+            Label4.Text = "完成組數："+count.ToString();
             ViewState["b"] = indexs;
             ViewState["a"] = x;
             ViewState["c"] = count;
@@ -236,7 +238,7 @@ namespace WebApplication1
 
         protected void btn_Ran_Click(object sender, EventArgs e)
         {
-            c = 0;
+            c = 3;
             Timer1.Enabled = true;
             int rnd;
             rnd = r.Next(0, 16);
@@ -291,19 +293,19 @@ namespace WebApplication1
                 ImageButton9, ImageButton10, ImageButton11, ImageButton12,
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
-            if (n == 5)
+            if (n == 0)
             {
                 count = 0;
                 imagebutton[indexs1].ImageUrl = "Resources/onback.png";
                 imagebutton[indexs2].ImageUrl = "Resources/onback.png";
                 imagebutton[indexs1].Enabled = true;
                 imagebutton[indexs2].Enabled = true;
-                n = 0;
+                n = 30;
                 Timer2.Enabled = false;
                 
             }
-            n += 1;
-            Label2.Text = n.ToString();
+            n -= 1;
+            Label2.Text = "遊戲剩餘時間："+n.ToString();
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
@@ -315,23 +317,30 @@ namespace WebApplication1
                 ImageButton13, ImageButton14, ImageButton15, ImageButton16,
             };
 
-            c++;
+            c--;
 
             
 
-            if (c < 3)
+            if (c > 0)
             {
-                Label1.Text = c.ToString();
+                Label1.Text = "觀看時間剩於："+c.ToString();
                 for (int i = 0; i < 16; i++)
                     imagebutton[i].ImageUrl = ((string[])ViewState["Image"])[i];
             }
             else
             {
+                Label1.Text = "";
                 for (int i = 0; i < 16; i++) { 
                     imagebutton[i].ImageUrl = "Resources/onback.png";
                     imagebutton[i].Enabled = true;
                 }
-                Timer1.Enabled = false;
+                if (c == 0)
+                {
+                    Timer1.Enabled = false;
+                }
+
+                
+                
             }
 
 

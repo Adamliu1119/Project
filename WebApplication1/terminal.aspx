@@ -39,13 +39,14 @@
                         <asp:ImageButton ID="ImageButton16" runat="server"  ImageUrl="~/Resources/onback.png" Height="200px" Width="140px" OnClick="ImageButton16_Click"/>
                     </div>
                     <asp:Button ID="btn_Ran" runat="server" Text="開始" OnClick="btn_Ran_Click" Height="50px" Width="100px" BackColor="#000099" ForeColor="White" /><br/>
-                    <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Enabled="False" Interval="1000"></asp:Timer>
+                    <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Enabled="False" Interval="2000"></asp:Timer>
                     <asp:Timer ID="Timer2" runat="server" OnTick="Timer2_Tick" EnableViewState="True" Enabled="False" Interval="1000"></asp:Timer>
-                    <asp:Label ID="Label1" runat="server" Text="0" ForeColor="White" Font-Size="30px"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="觀看時間剩餘：" ForeColor="White" Font-Size="30px"></asp:Label>
                     <asp:Label ID="Label3" runat="server"></asp:Label>
-                    <asp:Label ID="Label4" runat="server" Text="Length:" Font-Size="30px" ></asp:Label>
-                    <asp:Label ID="Label6" runat="server" Font-Size="30px"></asp:Label><br/>
-                    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="完成組數：" Font-Size="30px" ></asp:Label>
+                   
+                    <br/>
+                    <asp:Label ID="Label2" runat="server" Text="遊戲剩餘時間：" Font-Size="30px"></asp:Label>
                 </div>
                 <div id="win" runat="server" visible="false" style="text-align:center" >
                     <asp:Label ID="Label5" runat="server" Text="通關" Font-Size="300px" ForeColor="White"></asp:Label>

@@ -241,6 +241,8 @@ namespace WebApplication1
             Label3.Visible = false; //#
             c = 3; //#
             n = 5; //#
+            Timer1.Enabled = false; //#
+            Timer2.Enabled = false; //#
             play.Visible = true;
             win.Visible = false;
             for (int i = 0; i < 16; i++)
